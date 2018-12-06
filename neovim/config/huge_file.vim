@@ -127,10 +127,14 @@ nnoremap <Down> :echo "Use j"<CR>
  "
  " ======================================================================================================================
 
+
+ 
+" To fix after this line__________________________________________________________________________________________________
 let mapleader = "\<Space>"                  " Set space as leader key
 set nocompatible                            " nobody need compatibility :D
 set nohlsearch                              " Don't highlight after search
 set noshowmode                              " Dont show mode, because lightline is showing it already
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Use autocompletion plugin at startup
 let g:deoplete#enable_at_startup = 1
@@ -156,6 +160,7 @@ filetype plugin indent on " Ruby syntax highlighting
 
 " normal mode mappings
 nmap 0 ^
+map tt :tabnew<cr>
 nmap <leader>vr :tabe $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>; :
