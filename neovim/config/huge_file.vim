@@ -12,8 +12,11 @@ call plug#begin('~/.vim/plugged')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
   " Automatically closing pair stuff
-  Plug 'cohama/lexima.vim'
 
+  Plug 'cohama/lexima.vim'
+  
+  " support for vim256-color
+  Plug 'noah/vim256-color'
   " Commenting support (gc)
   Plug 'tpope/vim-commentary'
 
@@ -77,6 +80,8 @@ set scrolloff=5                             " Scroll when closing to top or bott
 set updatetime=1000                         " Update time used to create swap file or other things
 set suffixesadd+=.rb                        " Add ruby files to suffixes
 set guicursor=                  				    " Linux Mint compatibility
+set termguicolors
+set mouse=a
 colo lodestone
 " ----------------------------------------------------------------------------------------------------------------------
 " 2.1 Split settings (more natural)
@@ -110,7 +115,7 @@ set nohlsearch                              " Don't highlight after search
 " ----------------------------------------------------------------------------------------------------------------------
  if has('persistent_undo')
    set undofile
-     set undodir=~/.config/nvim/tmp/undo//
+     set undodir=~/.config/nvim/tmp/undo
  endif
 
 " ----------------------------------------------------------------------------------------------------------------------
