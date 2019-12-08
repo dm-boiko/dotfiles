@@ -1,32 +1,40 @@
 " " 1 Plugin list
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
-  " Snippet support (C-j)
-  Plug 'SirVer/ultisnips'
 
   " Automatically closing pair stuff
-  " Plug 'cohama/lexima.vim'
+  Plug 'cohama/lexima.vim'
 
   " Commenting support (gc)
-
   Plug 'tpope/vim-commentary'
 
   " Heuristically set indent settings
   Plug 'tpope/vim-sleuth'
 
+  " Add end automatically (seems unnecessary because there is cohama/lexima)
+  " Plug 'tpope/vim-endwise'
+
   " Git support
   Plug 'tpope/vim-fugitive'
 
-  "  Ruby support
+  " Adds montions to surrond objects with 'quotes' (brackets) or <h>tags</h>
+  Plug 'tpope/vim-surround'
+
+  " Adds repeat motion for vim-surround
+  Plug 'tpope/vim-repeat'
+
+  " Ruby support
   Plug 'vim-ruby/vim-ruby'
 
   " Intelligent autocomplete
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " Language Server support
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-  " Custom text objects creation (dependency for the latter)
+
+  " Custom text objects creation (including Ruby text objects)
   Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
 
-  " Mutli color cheme and switcher
+  " Mutli color cheme and switcher(including dependency)
   Plug 'flazz/vim-colorschemes'
   Plug 'xolox/vim-colorscheme-switcher'
   Plug 'xolox/vim-misc'
@@ -55,13 +63,12 @@ call plug#begin('~/.vim/plugged')
   " Close buffers but keep splits
   Plug 'moll/vim-bbye'
 
-  Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-sensible'
+
+  " Tree explorer (with git inducator)
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+
+  " Status line
   Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -91,18 +98,17 @@ set nojoinspaces                            " No extra space when joining a line
 set scrolloff=5                             " Scroll when closing to top or bottom of the screen
 set updatetime=1000                         " Update time used to create swap file or other things
 set suffixesadd+=.rb                        " Add ruby files to suffixes
-set guicursor=                  				    " Linux Mint compatibility
-" set statusline +=\ %{fugitive#statusline()} " Name of the current branch (needs fugitive.vim)
-set termguicolors
-set mouse=a
-colo adventurous
+set guicursor=                              " Linux Mint compatibility
+set termguicolors                           " Rich color support
+set mouse=a                                 " Allow using mouse
+set cursorline                              " Underline active line
+colo adventurous                            " Set colorscheme
 " ----------------------------------------------------------------------------------------------------------------------
 " 2.1 Split settings (more natural)
 "
 " ----------------------------------------------------------------------------------------------------------------------
 set splitbelow                              " Splitting a window will put the new window below the current
 set splitright                              " Splitting a window will put the new window right of the current
-
 
 " ----------------------------------------------------------------------------------------------------------------------
 " 2.2 Navigation between windows (more natural)
@@ -140,18 +146,15 @@ nnoremap <Right> :echo "Use l"<CR>
 nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
 
- " ======================================================================================================================
- " 3.0 Mapping settings
- "
- " ======================================================================================================================
+" ======================================================================================================================
+" 3.0 Mapping settings
+"
+" ======================================================================================================================
 
-
- 
 " To fix after this line__________________________________________________________________________________________________
 let mapleader = "\<Space>"                  " Set space as leader key
 set nocompatible                            " nobody need compatibility :D
 set noshowmode                              " Dont show mode, because lightline is showing it already
-" autocmd BufWritePre *.py :%s/\s\+$//e
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Plugin: Lightline                              "
@@ -206,10 +209,6 @@ endfunction
 " autosave settings
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
-set tabstop=2 " set tab size to 2, ruby-way
-set expandtab " insert spaces instead of TAB
-set shiftwidth=2 "number of space characters inserted for indentation
-set cursorline " underline active line
 set autoread  " Reload files changed outside vim
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
@@ -249,8 +248,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 
 map , :NERDTreeToggle<CR>
-noremap <silent> <leader><Space> :FuzzyOpen<CR>
-" nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FuzzyOpen\<cr>"
 nmap <Leader>cf :silent !echo -n % \| pbcopy<Enter>
 let g:NERDTreeWinPos = "right"
 :let g:NERDTreeShowLineNumbers=1
@@ -270,7 +268,9 @@ set number relativenumber
 
 
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Plugin: startify                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't change to directory when selecting a file
 let g:startify_files_number = 10
 let g:startify_change_to_dir = 0
