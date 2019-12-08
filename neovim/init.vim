@@ -2,34 +2,26 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
   " Snippet support (C-j)
-  " Plug 'SirVer/ultisnips'
-
-  " Asynchronous maker and linter (needs linters to work)
-  " Plug 'benekastah/neomake', { 'on': ['Neomake'] }
-
-  " Autocomplete
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'SirVer/ultisnips'
 
   " Automatically closing pair stuff
+  " Plug 'cohama/lexima.vim'
 
-  Plug 'cohama/lexima.vim'
-  
-  " support for vim256-color
-  Plug 'noah/vim256-color'
   " Commenting support (gc)
+
   Plug 'tpope/vim-commentary'
 
   " Heuristically set indent settings
   Plug 'tpope/vim-sleuth'
 
-  "  Ruby support (plays nicely with tpope/rbenv-ctags)
+  " Git support
+  Plug 'tpope/vim-fugitive'
+
+  "  Ruby support
   Plug 'vim-ruby/vim-ruby'
 
-  " Rails support (:A, :R, :Rmigration, :Rextract)
-  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
-
-  " " Bundler support (plays nicely with tpope/gem-ctags)
-  " Plug 'tpope/vim-bundler', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
+  " Intelligent autocomplete
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " Language Server support
 
   " Custom text objects creation (dependency for the latter)
   Plug 'kana/vim-textobj-user'
@@ -39,8 +31,29 @@ call plug#begin('~/.vim/plugged')
   Plug 'xolox/vim-colorscheme-switcher'
   Plug 'xolox/vim-misc'
 
-  " material color scheme
-  Plug 'hzchirs/vim-material'
+   " One more fuzzy finder
+  Plug 'cloudhead/neovim-fuzzy'
+
+  " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
+  Plug 'dyng/ctrlsf.vim'
+
+  " Highlight yanked text
+  Plug 'markonm/hlyank.vim'
+
+  " Autosaving
+  Plug '907th/vim-auto-save'
+
+  " Fancy start page
+  Plug 'mhinz/vim-startify'
+
+  " Code navigation. Tags.
+  Plug 'majutsushi/tagbar' 
+
+  " TabNine. Deep Learning based code completion
+  " Plug 'zxqfl/tabnine-vim'
+
+  " Close buffers but keep splits
+  Plug 'moll/vim-bbye'
 
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'tpope/vim-endwise'
@@ -48,8 +61,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdtree'
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'itchyny/lightline.vim'
+
 call plug#end()
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64,11 +78,10 @@ scriptencoding utf-8                        " Set utf-8 as default script encodi
 set shell=/bin/zsh                          " Setting shell to zsh
 set showcmd                                 " Show commands as you type them
 set textwidth=120                           " Text width is 120 characters
-set cmdheight=1                             " Command line height
+set cmdheight=1                             " command line height
 set pumheight=10                            " Completion window max size
 set noswapfile                              " New buffers will be loaded without creating a swapfile
-set hidden                                  " Enables to switch between unsaved buffers and keep undo history
-set clipboard+=unnamed                      " Allow to use system clipboard
+" set clipboard+=unnamed                      " Allow to use system clipboard
 set lazyredraw                              " Don't redraw while executing macros (better performance)
 set showmatch                               " Show matching brackets when text indicator is over them
 set matchtime=2                             " How many tenths of a second to blink when matching brackets
@@ -79,9 +92,10 @@ set scrolloff=5                             " Scroll when closing to top or bott
 set updatetime=1000                         " Update time used to create swap file or other things
 set suffixesadd+=.rb                        " Add ruby files to suffixes
 set guicursor=                  				    " Linux Mint compatibility
+" set statusline +=\ %{fugitive#statusline()} " Name of the current branch (needs fugitive.vim)
 set termguicolors
 set mouse=a
-colo lodestone
+colo adventurous
 " ----------------------------------------------------------------------------------------------------------------------
 " 2.1 Split settings (more natural)
 "
@@ -136,50 +150,116 @@ nnoremap <Down> :echo "Use j"<CR>
 " To fix after this line__________________________________________________________________________________________________
 let mapleader = "\<Space>"                  " Set space as leader key
 set nocompatible                            " nobody need compatibility :D
-set nohlsearch                              " Don't highlight after search
 set noshowmode                              " Dont show mode, because lightline is showing it already
-autocmd BufWritePre *.py :%s/\s\+$//e
+" autocmd BufWritePre *.py :%s/\s\+$//e
 
-" Use autocompletion plugin at startup
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
-" Make CtrlP use ag for listing the files. Way faster and no useless files.l
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Plugin: Lightline                              "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+  \ 'colorscheme': 'one',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste'  ],
+  \             [ 'fugitive', 'readonly', 'filename', 'modified', 'spell', 'syntastic'  ] ],
+  \   'right': [ [ 'lineinfo'  ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'  ]  ]
+  \ },
+  \ 'component': {
+  \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+  \ },
+  \ 'component_visible_condition': {
+  \   'readonly': '(&filetype!="help"&& &readonly)',
+  \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightlineFugitive',
+  \ },
+  \ 'component_expand': {
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_type': {
+  \   'syntastic': 'error',
+  \ }
+  \ }
 
-" statusline settings
- let g:lightline = {
-       \ 'colorscheme': 'one',
-             \ }
+function! LightlineFugitive() abort
+  if &filetype ==# 'help'
+    return ''
+  endif
+  if has_key(b:, 'lightline_fugitive') && reltimestr(reltime(b:lightline_fugitive_)) =~# '^\s*0\.[0-5]'
+    return b:lightline_fugitive
+  endif
+  try
+    if exists('*fugitive#head')
+      let head = fugitive#head()
+    else
+      return ''
+    endif
+    let b:lightline_fugitive = head
+    let b:lightline_fugitive_ = reltime()
+    return b:lightline_fugitive
+  catch
+  endtry
+  return ''
+endfunction
 
+
+" autosave settings
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 set tabstop=2 " set tab size to 2, ruby-way
 set expandtab " insert spaces instead of TAB
 set shiftwidth=2 "number of space characters inserted for indentation
 set cursorline " underline active line
 set autoread  " Reload files changed outside vim
-" set list listchars=tab:\ \ ,trail:•" Display tabs and trailing spaces visually
-syntax on
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+set list listchars=tab:\ \ ,trail:•" Display tabs and trailing spaces visually
+" syntax on
 filetype plugin indent on " Ruby syntax highlighting
+"
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
 
 " normal mode mappings
 nmap 0 ^
 map tt :tabnew<cr>
+map tc :tabclose<cr>
+nmap <BS> <C-w>
 nmap <leader>vr :tabe $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>; :
 nmap <leader>w :w<CR>
-map <C-n> :NERDTreeToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"             Search mappings                     "
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+" vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>w <Plug>CtrlSFCwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+
+map , :NERDTreeToggle<CR>
+noremap <silent> <leader><Space> :FuzzyOpen<CR>
+" nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nmap <Leader>cf :silent !echo -n % \| pbcopy<Enter>
 let g:NERDTreeWinPos = "right"
+:let g:NERDTreeShowLineNumbers=1
+:autocmd BufEnter NERD_* setlocal rnu
 
 " insert mode mappings
 imap jk <esc>
 imap kj <esc>
 
-map + <c-w>+
-map _ <c-w>-
-map = <c-w>>
-map - <c-w><
 " tweaked line numbers
 set number relativenumber
 :augroup numbertoggle
@@ -187,3 +267,40 @@ set number relativenumber
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
+
+
+
+
+" Don't change to directory when selecting a file
+let g:startify_files_number = 10
+let g:startify_change_to_dir = 0
+let g:startify_custom_header = [ ]
+let g:startify_relative_path = 1
+let g:startify_use_env = 1
+
+" Custom startup list, only show MRU from current directory/project
+let g:startify_lists = [
+      \  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
+      \  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
+      \  { 'type': 'commands',  'header': [ 'Commands' ]       },
+      \ ]
+
+let g:startify_bookmarks = [
+      \ { 'c': '~/.config/nvim/init.vim' },
+      \ { 'g': '~/.gitconfig' },
+      \ { 'z': '~/.zshrc' }
+      \ ]
+
+autocmd User Startified setlocal cursorline
+nmap <leader>st :Startify<cr>
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
