@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 
   " Add end automatically (seems unnecessary because there is cohama/lexima)
   " Plug 'tpope/vim-endwise'
-
+ 
   " Git support
   Plug 'tpope/vim-fugitive'
 
@@ -64,12 +64,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'moll/vim-bbye'
 
 
-  " Tree explorer (with git inducator)
+  " Tree explorer (with git indicator)
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " Status line
   Plug 'itchyny/lightline.vim'
+
+  " Fuzzy jumper
+  Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 call plug#end()
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -88,7 +92,7 @@ set textwidth=120                           " Text width is 120 characters
 set cmdheight=1                             " command line height
 set pumheight=10                            " Completion window max size
 set noswapfile                              " New buffers will be loaded without creating a swapfile
-" set clipboard+=unnamed                      " Allow to use system clipboard
+set clipboard+=unnamed                      " Allow to use system clipboard
 set lazyredraw                              " Don't redraw while executing macros (better performance)
 set showmatch                               " Show matching brackets when text indicator is over them
 set matchtime=2                             " How many tenths of a second to blink when matching brackets
