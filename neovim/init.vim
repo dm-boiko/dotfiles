@@ -69,10 +69,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
   " Status line
-  Plug 'itchyny/lightline.vim'
+  Plug 'vim-airline/vim-airline'
+  " Plug 'itchyny/lightline.vim'
 
-  " Fuzzy jumper
+ " Fuzzy jumper
   Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  " Toggling terminal guake style
+  Plug 'pakutoma/toggle-terminal'
 
 
 call plug#end()
@@ -106,7 +110,8 @@ set guicursor=                              " Linux Mint compatibility
 set termguicolors                           " Rich color support
 set mouse=a                                 " Allow using mouse
 set cursorline                              " Underline active line
-colo adventurous                            " Set colorscheme
+"colo adventurous                            " Set colorscheme
+colo base16-railscasts                      " Set colorscheme
 " ----------------------------------------------------------------------------------------------------------------------
 " 2.1 Split settings (more natural)
 "
@@ -161,53 +166,26 @@ set nocompatible                            " nobody need compatibility :D
 set noshowmode                              " Dont show mode, because lightline is showing it already
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Plugin: Lightline                              "
+"                             Plugin: Airline                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lightline = {
-  \ 'colorscheme': 'one',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste'  ],
-  \             [ 'fugitive', 'readonly', 'filename', 'modified', 'spell', 'syntastic'  ] ],
-  \   'right': [ [ 'lineinfo'  ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'  ]  ]
-  \ },
-  \ 'component': {
-  \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-  \ },
-  \ 'component_visible_condition': {
-  \   'readonly': '(&filetype!="help"&& &readonly)',
-  \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-  \ },
-  \ 'component_function': {
-  \   'fugitive': 'LightlineFugitive',
-  \ },
-  \ 'component_expand': {
-  \   'syntastic': 'SyntasticStatuslineFlag',
-  \ },
-  \ 'component_type': {
-  \   'syntastic': 'error',
-  \ }
-  \ }
-
-function! LightlineFugitive() abort
-  if &filetype ==# 'help'
-    return ''
-  endif
-  if has_key(b:, 'lightline_fugitive') && reltimestr(reltime(b:lightline_fugitive_)) =~# '^\s*0\.[0-5]'
-    return b:lightline_fugitive
-  endif
-  try
-    if exists('*fugitive#head')
-      let head = fugitive#head()
-    else
-      return ''
-    endif
-    let b:lightline_fugitive = head
-    let b:lightline_fugitive_ = reltime()
-    return b:lightline_fugitive
-  catch
-  endtry
-  return ''
-endfunction
+let g:airline_section_b= ''
+let g:airline_section_x= ''
+let g:airline_section_y= ''
+let g:airline_section_z= ''
+let g:airline#extensions#tabline#enabled = 1           " enable airline tabline
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
+let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
+let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
+let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
+let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
+let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
+let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
+let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
+let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
+let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
+let g:airline#extensions#tabline#enabled = 1
+" remove the filetype partlet g:airline_section_x=''" remove separators for empty sectionslet
+let g:airline_skip_empty_sections = 1
 
 
 " autosave settings
@@ -230,6 +208,13 @@ filetype plugin indent on " Ruby syntax highlighting
 nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
 
+"Do not jump after pasing
+noremap p gp
+noremap P gP
+noremap gp p
+noremap gP P
+
+
 " normal mode mappings
 nmap 0 ^
 map tt :tabnew<cr>
@@ -249,9 +234,12 @@ nmap     <C-F>w <Plug>CtrlSFCwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+tnoremap <Esc> <C-\><C-n><C-\><CR>
 
 
 map , :NERDTreeToggle<CR>
+map \ :NERDTreeFind<CR>
+let g:NERDTreeWinSize=42
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FuzzyOpen\<cr>"
 nmap <Leader>cf :silent !echo -n % \| pbcopy<Enter>
 let g:NERDTreeWinPos = "right"
@@ -308,3 +296,75 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+"""""" TOGGLE TERMINAL
+
+" With this function you can reuse the same terminal in neovim.
+" You can toggle the terminal and also send a command to the same terminal.
+
+let s:monkey_terminal_window = -1
+let s:monkey_terminal_buffer = -1
+let s:monkey_terminal_job_id = -1
+
+function! MonkeyTerminalOpen()
+  " Check if buffer exists, if not create a window and a buffer
+  if !bufexists(s:monkey_terminal_buffer)
+    " Creates a window call monkey_terminal
+    new monkey_terminal
+    " Moves to the window the right the current one
+    wincmd L
+    let s:monkey_terminal_job_id = termopen($SHELL, { 'detach': 1 })
+
+     " Change the name of the buffer to "Terminal 1"
+     silent file Terminal\ 1
+     " Gets the id of the terminal window
+     let s:monkey_terminal_window = win_getid()
+     let s:monkey_terminal_buffer = bufnr('%')
+
+    " The buffer of the terminal won't appear in the list of the buffers
+    " when calling :buffers command
+    set nobuflisted
+  else
+    if !win_gotoid(s:monkey_terminal_window)
+    sp
+    " Moves to the window below the current one
+    wincmd L   
+    buffer Terminal\ 1
+     " Gets the id of the terminal window
+     let s:monkey_terminal_window = win_getid()
+    endif
+  endif
+endfunction
+
+function! MonkeyTerminalToggle()
+  if win_gotoid(s:monkey_terminal_window)
+    call MonkeyTerminalClose()
+  else
+    call MonkeyTerminalOpen()
+  endif
+endfunction
+
+function! MonkeyTerminalClose()
+  if win_gotoid(s:monkey_terminal_window)
+    " close the current window
+    hide
+  endif
+endfunction
+
+function! MonkeyTerminalExec(cmd)
+  if !win_gotoid(s:monkey_terminal_window)
+    call MonkeyTerminalOpen()
+  endif
+
+  " clear current input
+  call jobsend(s:monkey_terminal_job_id, "clear\n")
+
+  " run cmd
+  call jobsend(s:monkey_terminal_job_id, a:cmd . "\n")
+  normal! G
+  wincmd p
+endfunction
+
+" With this maps you can now toggle the terminal
+nnoremap <C-\> :call MonkeyTerminalToggle()<cr>
+tnoremap <C-\> <C-\><C-n>:call MonkeyTerminalToggle()<cr>
+
