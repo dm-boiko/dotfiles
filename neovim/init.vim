@@ -78,6 +78,9 @@ call plug#begin('~/.vim/plugged')
   " Toggling terminal guake style
   Plug 'pakutoma/toggle-terminal'
 
+  " Seamless tmux navigation
+  Plug 'christoomey/vim-tmux-navigator'
+
 
 call plug#end()
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,6 +187,7 @@ let g:airline#extensions#tabline#show_splits = 0       " disables the buffer nam
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
 let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#nerdtree_status = 0
 " remove the filetype partlet g:airline_section_x=''" remove separators for empty sectionslet
 let g:airline_skip_empty_sections = 1
 
@@ -244,6 +248,7 @@ nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\
 nmap <Leader>cf :silent !echo -n % \| pbcopy<Enter>
 let g:NERDTreeWinPos = "right"
 :let g:NERDTreeShowLineNumbers=1
+let NERDTreeStatusline="%{matchstr(getline('.'), '\\s\\zs\\w\\(.*\\)')}"
 :autocmd BufEnter NERD_* setlocal rnu
 
 " insert mode mappings
