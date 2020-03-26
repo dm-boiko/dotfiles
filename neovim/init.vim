@@ -81,6 +81,20 @@ call plug#begin('~/.vim/plugged')
   " Seamless tmux navigation
   Plug 'christoomey/vim-tmux-navigator'
 
+  " Plugin to wor kwith openAPI
+  Plug 'xavierchow/vim-swagger-preview'
+
+  " Tab naming management
+  Plug 'gcmt/taboo.vim'
+
+  " Go to definitions and find usages
+  Plug 'pechorin/any-jump.vim'
+
+  "Terraform"
+  Plug 'hashivim/vim-terraform'
+
+  " Yamp file
+  Plug 'stephpy/vim-yaml'
 
 call plug#end()
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,6 +242,7 @@ nmap <leader>vr :tabe $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>; :
 nmap <leader>w :w<CR>
+map <leader>g :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""
 "             Search mappings                     "
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,9 +255,10 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 tnoremap <Esc> <C-\><C-n><C-\><CR>
 
+nmap \ za
 
 map , :NERDTreeToggle<CR>
-map \ :NERDTreeFind<CR>
+map <leader>\ :NERDTreeFind<CR>
 let g:NERDTreeWinSize=42
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FuzzyOpen\<cr>"
 nmap <Leader>cf :silent !echo -n % \| pbcopy<Enter>
@@ -370,6 +386,8 @@ function! MonkeyTerminalExec(cmd)
 endfunction
 
 " With this maps you can now toggle the terminal
+
+nmap ` :call MonkeyTerminalToggle()<CR>
 nnoremap <C-\> :call MonkeyTerminalToggle()<cr>
 tnoremap <C-\> <C-\><C-n>:call MonkeyTerminalToggle()<cr>
 
