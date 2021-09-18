@@ -26,10 +26,6 @@ call plug#begin('~/.vim/plugged')
   " Ruby support
   Plug 'vim-ruby/vim-ruby'
 
-  " Intelligent autocomplete
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
-
   " Custom text objects creation (including Ruby text objects)
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
@@ -38,9 +34,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'flazz/vim-colorschemes'
   Plug 'xolox/vim-colorscheme-switcher'
   Plug 'xolox/vim-misc'
-
-   " One more fuzzy finder
-  Plug 'cloudhead/neovim-fuzzy'
 
   " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
   Plug 'dyng/ctrlsf.vim'
@@ -54,15 +47,8 @@ call plug#begin('~/.vim/plugged')
   " Fancy start page
   Plug 'mhinz/vim-startify'
 
-  " Code navigation. Tags.
-  Plug 'majutsushi/tagbar' 
-
-  " TabNine. Deep Learning based code completion
-  " Plug 'zxqfl/tabnine-vim'
-
   " Close buffers but keep splits
   Plug 'moll/vim-bbye'
-
 
   " Tree explorer (with git indicator)
   Plug 'scrooloose/nerdtree'
@@ -80,9 +66,6 @@ call plug#begin('~/.vim/plugged')
 
   " Seamless tmux navigation
   Plug 'christoomey/vim-tmux-navigator'
-
-  " Plugin to wor kwith openAPI
-  Plug 'xavierchow/vim-swagger-preview'
 
   " Tab naming management
   Plug 'gcmt/taboo.vim'
