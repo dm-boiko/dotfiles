@@ -31,7 +31,7 @@ opt.splitbelow = true         -- orizontal split to the bottom
 opt.ignorecase = true         -- ignore case letters when search
 opt.smartcase = true          -- ignore lowercase for the whole pattern
 opt.hlsearch = false	      -- don"t highlight after search
-opt.showcmd = true            -- show commands as it's typed
+g.showcmd = true            -- show commands as it's typed
 
 vim.wo.cursorline = true	      -- Highlight current line
 
