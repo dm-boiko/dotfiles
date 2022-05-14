@@ -3,7 +3,7 @@
 -----------------------------------------------------------
  require('settings')                 -- settings
  require('keymaps')                  -- keymaps
--- require('plugins/paq-nvim')         -- plugin manager
+ require('plugins/paq-nvim')         -- plugin manager
 -- require('plugins/nvim-tree')	      -- file manager
 -- require('plugins/lualine')          -- statusline
 -- require('plugins/nvim-cmp')         -- autocomplete
