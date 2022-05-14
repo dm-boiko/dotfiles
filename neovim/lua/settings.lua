@@ -22,6 +22,7 @@ opt.swapfile = false          -- don"t use swapfile
 -----------------------------------------------------------
 -- Neovim UI
 -----------------------------------------------------------
+cmd('colorscheme github_dimmed')
 opt.number = true             -- show line number
 opt.showmatch = true          -- highlight matching parenthesis
 opt.foldmethod = "marker"     -- enable folding (default "foldmarker")
