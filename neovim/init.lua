@@ -6,6 +6,7 @@
  require('plugins')                  -- plugins
  require('plugin/lualine')           -- lualine config
 
+
 -- require('plugins/nvim-lspconfig')   -- LSP settings
 -- require('plugins/vista')            -- tag viewer
 -- require('plugins/nvim-treesitter')  -- tree-sitter interface
