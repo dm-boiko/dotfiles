@@ -4,7 +4,7 @@
  require('settings')                 -- settings
  require('keymaps')                  -- keymaps
  require('plugins')                  -- plugins
--- require('plugins/nvim-cmp')         -- autocomplete
+ require('plugin/alpha-nvim')        -- start page
 -- require('plugins/nvim-lspconfig')   -- LSP settings
 -- require('plugins/vista')            -- tag viewer
 -- require('plugins/nvim-treesitter')  -- tree-sitter interface
