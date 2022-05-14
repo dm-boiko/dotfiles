@@ -75,16 +75,20 @@ _G.packer_plugins = {
     path = "/home/dima/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  ["JABS.nvim"] = {
+    loaded = true,
+    path = "/home/dima/.local/share/nvim/site/pack/packer/start/JABS.nvim",
+    url = "https://github.com/matbme/JABS.nvim"
+  },
+  ["github-nvim-theme"] = {
+    loaded = true,
+    path = "/home/dima/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    url = "https://github.com/projekt0n/github-nvim-theme"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/dima/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["mini.nvim"] = {
-    config = { "\27LJ\2\nã\1\0\0\t\0\f\2\0256\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\5\0004\4\3\0009\5\3\0009\5\4\5B\5\1\0?\5\0\0=\4\6\0034\4\3\0009\5\a\0009\5\b\5B\5\1\2>\5\1\0049\5\a\0009\5\t\5'\a\n\0'\b\n\0B\5\3\0?\5\1\0=\4\v\3B\1\2\1K\0\1\0\18content_hooks\vcenter\raligning\18adding_bullet\rgen_hook\nitems\1\0\0\14telescope\rsections\nsetup\17mini.starter\frequire\3€€À™\4\5€€À™\4\0" },
-    loaded = true,
-    path = "/home/dima/.local/share/nvim/site/pack/packer/start/mini.nvim",
-    url = "https://github.com/echasnovski/mini.nvim"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -131,10 +135,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
--- Config for: mini.nvim
-time([[Config for mini.nvim]], true)
-try_loadstring("\27LJ\2\nã\1\0\0\t\0\f\2\0256\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\5\0004\4\3\0009\5\3\0009\5\4\5B\5\1\0?\5\0\0=\4\6\0034\4\3\0009\5\a\0009\5\b\5B\5\1\2>\5\1\0049\5\a\0009\5\t\5'\a\n\0'\b\n\0B\5\3\0?\5\1\0=\4\v\3B\1\2\1K\0\1\0\18content_hooks\vcenter\raligning\18adding_bullet\rgen_hook\nitems\1\0\0\14telescope\rsections\nsetup\17mini.starter\frequire\3€€À™\4\5€€À™\4\0", "config", "mini.nvim")
-time([[Config for mini.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads

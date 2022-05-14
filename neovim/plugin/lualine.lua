@@ -12,7 +12,7 @@ require('lualine').setup {
     lualine_a = {'mode'},
     lualine_b = {'diff', 'diagnostics'},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {'fileformat', 'filetype'},
     lualine_y = {},
     lualine_z = {'location'}
   },

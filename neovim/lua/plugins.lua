@@ -30,20 +30,7 @@ return require('packer').startup(function()
 	  'nvim-lualine/lualine.nvim',
 	  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+  use "projekt0n/github-nvim-theme"
 
-  use {
-	  "echasnovski/mini.nvim",
-	  config = function()
-		  local starter = require "mini.starter"
-		  starter.setup {
-			  items = {
-				  starter.sections.telescope(),
-			  },
-			  content_hooks = {
-				  starter.gen_hook.adding_bullet(),
-				  starter.gen_hook.aligning("center", "center"),
-			  },
-		  }
-	  end,
-  }
+  use 'matbme/JABS.nvim'
 end)
