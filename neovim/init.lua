@@ -4,8 +4,6 @@
  require('settings')                 -- settings
  require('keymaps')                  -- keymaps
  require('plugins')                  -- plugins
- require('plugins/nvim-tree')	      -- file manager
--- require('plugins/lualine')          -- statusline
 -- require('plugins/nvim-cmp')         -- autocomplete
 -- require('plugins/nvim-lspconfig')   -- LSP settings
 -- require('plugins/vista')            -- tag viewer

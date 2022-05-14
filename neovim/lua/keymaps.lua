@@ -12,6 +12,7 @@ keymap("n", "<C-l>", "<C-w>l", default_opts)
 keymap("n", "<leader>w", ":w<CR>", default_opts)
 keymap("n", "<leader>;", ":", default_opts)
 keymap("n", "<leader>v", ":vsp<CR>", default_opts)
+keymap("n", "<leader><leader>", ":Telescope find_files<CR>", default_opts)
 
 keymap("n", "0", "^", default_opts)
 keymap("n", ",", ":NvimTreeToggle<CR>", default_opts)
