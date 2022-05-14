@@ -5,7 +5,7 @@
  require('keymaps')                  -- keymaps
  require('plugins')                  -- plugins
  require('plugin/nvim-tree')           -- lualine config
- -- require('plugin/lualine')           -- lualine config
+ require('plugin/lualine')           -- lualine config
 
 
 -- require('plugins/nvim-lspconfig')   -- LSP settings

@@ -3,6 +3,7 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'codedark',
     component_separators = { left = '', right = ''},
+    -- section_separators = { left = 'JJJJ', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = { 'NvimTree' },
     always_divide_middle = true,

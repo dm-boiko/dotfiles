@@ -7,9 +7,9 @@ return require('packer').startup(function()
 	use {'andymass/vim-matchup', event = 'VimEnter'}
 
 	use { 'kyazdani42/nvim-tree.lua',
-	config = function() 
-		require'nvim-tree'.setup() 
-	end
+	-- config = function() 
+	-- 	require'nvim-tree'.setup() 
+	-- end
 }
 
 -- Load on a combination of conditions: specific filetypes or commands
@@ -34,6 +34,8 @@ use {
 	'nvim-lualine/lualine.nvim',
 	requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 }
-use { "projekt0n/github-nvim-theme" }
+use { 'projekt0n/github-nvim-theme' }
+
+use { 'markonm/hlyank.vim' }
 
 end)
