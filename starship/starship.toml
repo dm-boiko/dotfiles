@@ -9,5 +9,5 @@ add_newline = true
 disabled = true
 
 # Move the directory to the second line
-#format = '$container$golang$python$ruby$status'
-format = '☺\☻ '
+format = '$container$golang$python$ruby$status'
+# format = '☺\☻ '

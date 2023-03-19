@@ -11,11 +11,13 @@ vim.opt.undofile = true 		  -- save undo history
 -----------------------------------------------------------
 -- Neovim UI
 -----------------------------------------------------------
--- cmd('colorscheme github_dimmed')
 vim.opt.number = true             -- show line number
 vim.opt.relativenumber = true             -- show relative line number
 vim.opt.showmatch = true          -- highlight matching parenthesis
-vim.opt.foldmethod = "marker"     -- enable folding (default "foldmarker")
+
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.opt.splitright = true         -- vertical split to the right
 vim.opt.splitbelow = true         -- orizontal split to the bottom
 vim.opt.ignorecase = true         -- ignore case letters when search
@@ -71,13 +73,11 @@ keymap('n', '<leader>q', ':quitall<CR>', default_opts)
 -- Keep cursor position after yanking
 -- keymap.set("n", "y", "myy")
 
-
-
-
 -----------------------------------------------------------
 -- Lazy.nvim plugin manager
 -- `:help lazy.nvim.txt` for more info
 -----------------------------------------------------------
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system {
@@ -94,7 +94,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	{ 'folke/which-key.nvim', opts = {} },
 	{ 'numToStr/Comment.nvim', opts = {} },
-	{ 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+	{ 
+		'nvim-telescope/telescope.nvim', 
+		version = '*', 
+		dependencies = { 'nvim-lua/plenary.nvim' } 
+	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		-- NOTE: If you are having trouble with this installation,
