@@ -15,7 +15,7 @@ local options = {
 	grepformat = "%f:%l:%c:%m",
 	-- grepprg = "rg --vimgrep",
 	mouse = "a", -- allow the mouse to be used in neovim
-	pumheight = 10, -- pop up menu height
+	-- pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	smartindent = true, -- make indenting smarter again
 	splitbelow = true, -- force all horizontal splits to go below current window
@@ -131,8 +131,8 @@ end, { desc = "[/] Fuzzily search in current buffer]" })
 -- Split parts of the init into different files and load 
 ----------------------------------------------------------
 local core_modules = {
-	"load_plugins"
-	"lualine"
+	"load_plugins",
+	"load_lualine"
 }
 -- Using pcall we can handle better any loading issues
 for _, module in ipairs(core_modules) do
