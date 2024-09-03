@@ -20,7 +20,7 @@ return {
 					globalstatus = true,
 				},
 				sections = {
-					lualine_a = {'mode'},
+					lualine_a = {},
 					lualine_b = {
 						{
 							'filename',
@@ -43,9 +43,9 @@ return {
 						}
 					},
 					lualine_c = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
-					lualine_x = {'filetype'},
+					lualine_x = {},
 					lualine_y = {},
-					lualine_z = {'tabs'}
+					lualine_z = {}
 				},
 				tabline = {},
 				extensions = {}

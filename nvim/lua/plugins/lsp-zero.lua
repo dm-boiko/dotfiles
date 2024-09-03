@@ -1,4 +1,3 @@
--- this is not yet working
 return {
 	{
 		'VonHeikemen/lsp-zero.nvim',
