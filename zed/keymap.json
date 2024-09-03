@@ -1,58 +1,42 @@
 [
-    {
-      "context": "Editor",
-      "bindings": {
-        "ctrl-h": [
-          "workspace::ActivatePaneInDirection",
-          "Left"
-        ],
-        "ctrl-l": [
-          "workspace::ActivatePaneInDirection",
-          "Right"
-        ],
-        "ctrl-k": [
-          "workspace::ActivatePaneInDirection",
-          "Up"
-        ],
-        "ctrl-j": [
-          "workspace::ActivatePaneInDirection",
-          "Down"
-        ]
-      }
-    },
-    {
-      "context": "Workspace",
-      "bindings": {
-        "cmd-`": "terminal_panel::ToggleFocus"
-      }
-    },
-    {
-      "context": "Editor && vim_mode == insert && !menu",
-      "bindings": {
-        "k j": [
-          "vim::SwitchMode",
-          "Normal"
-        ],
-        "j k": [
-          "vim::SwitchMode",
-          "Normal"
-        ]
-      }
-    },
-    {
-      "context": "Editor && vim_mode == normal && !menu",
-      "bindings": {
-        "space space": "file_finder::Toggle",
-        "space enter": "workspace::ToggleZoom",
-        ",": "workspace::ToggleRightDock",
-        "K": "editor::Hover"
-      }
-    },
-    {
-      "context": "ProjectPanel",
-      "bindings": {
-        ",": "workspace::ToggleRightDock"
-      }
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
-  ]
-  
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-`": "terminal_panel::ToggleFocus"
+      // "ctrl-a": "projects::OpenRecent"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "k j": ["vim::SwitchMode", "Normal"],
+      "j k": ["vim::SwitchMode", "Normal"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "space enter": "workspace::ToggleZoom",
+      ",": "workspace::ToggleRightDock",
+      "K": "editor::Hover"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // ",": "workspace::ToggleRightDock",
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
+    }
+  }
+]
