@@ -2,24 +2,30 @@
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-a": "projects::OpenRecent",
+      "ctrl-g": "assistant::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-`": "terminal_panel::ToggleFocus"
-      // "ctrl-a": "projects::OpenRecent"
+      "ctrl-a": "projects::OpenRecent",
+      "cmd-`": "terminal_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
-      "k j": ["vim::SwitchMode", "Normal"],
-      "j k": ["vim::SwitchMode", "Normal"]
+      "k j": "vim::SwitchToNormalMode",
+      "j k": "vim::SwitchToNormalMode"
     }
   },
   {
@@ -28,15 +34,17 @@
       "space space": "file_finder::Toggle",
       "space enter": "workspace::ToggleZoom",
       ",": "workspace::ToggleRightDock",
-      "K": "editor::Hover"
+      "K": "editor::Hover",
+      "t t": "tab_switcher::Toggle"
     }
   },
   {
     "context": "ProjectPanel",
     "bindings": {
       // ",": "workspace::ToggleRightDock",
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"]
+      "space space": "file_finder::Toggle",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight"
     }
   }
 ]
