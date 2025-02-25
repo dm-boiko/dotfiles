@@ -7,22 +7,23 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "terminal": {
+    "dock": "bottom"
+  },
   "assistant": {
     "dock": "right",
-    "version": "2",
     "default_model": {
-      "provider": "ollama",
-      "model": "llama3.1:8b",
-      "low_speed_timeout_in_seconds": 30
-    }
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
   },
   "outline_panel": {
     "dock": "right",
     "button": true
   },
   "chat_panel": {
-    "dock": "right",
-    "button": false
+    "dock": "right"
   },
   "collaboration_panel": {
     "button": false,
@@ -32,14 +33,21 @@
     "button": false
   },
   "features": {
-    "copilot": false,
-    "inline_completion_provider": "none"
+    // "copilot": false,
+    // "inline_completion_provider": "none"
   },
+
   "project_panel": {
     "dock": "left"
   },
   "tab_bar": {
+    "show": false,
     "show_nav_history_buttons": false
+  },
+
+  "toolbar": {
+    "quick_actions": false,
+    "breadcrumbs": false
   },
 
   "git": {
@@ -47,16 +55,16 @@
       "enabled": false
     }
   },
-  "theme": "One Dark",
+  "theme": "Ayu Mirage",
   "vim_mode": true,
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
-  // "buffer_font_family": "Source Code Pro",
-  // "ui_font_family": "Source Code Pro",
+  "ui_font_size": 17,
+  "buffer_font_size": 18.0,
+  "buffer_font_family": "Source Code Pro",
+  "ui_font_family": "Source Code Pro",
   "buffer_font_features": {
     // Disable ligatures:
     "calt": false
