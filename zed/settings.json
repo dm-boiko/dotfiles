@@ -10,13 +10,12 @@
   "terminal": {
     "dock": "bottom"
   },
-  "assistant": {
+  "agent": {
     "dock": "right",
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"
-    },
-    "version": "2"
+    }
   },
   "outline_panel": {
     "dock": "right",
@@ -63,8 +62,8 @@
   },
   "ui_font_size": 17,
   "buffer_font_size": 18.0,
-  "buffer_font_family": "Source Code Pro",
-  "ui_font_family": "Source Code Pro",
+  "buffer_font_family": "SauceCodePro Nerd Font Mono",
+  "ui_font_family": "SauceCodePro Nerd Font",
   "buffer_font_features": {
     // Disable ligatures:
     "calt": false
