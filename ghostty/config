@@ -1,4 +1,4 @@
-font-family = "SauceCodePro Nerd Font"
+font-family = SauceCodePro Nerd Font
 
 font-family-bold = 
 font-family-italic = 
@@ -346,15 +346,16 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 # 
 #   - macOS: titlebar tabs style is not updated when switching themes.
 # 
-theme = 
+theme = Kanagawa Wave
+
 
 # Background color for the window.
 # Specified as either hex (`#RRGGBB` or `RRGGBB`) or a named X11 color.
-background = #282c34
+# background = #282c34
 
 # Foreground color for the window.
 # Specified as either hex (`#RRGGBB` or `RRGGBB`) or a named X11 color.
-foreground = #ffffff
+# foreground = #ffffff
 
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
@@ -683,7 +684,7 @@ cursor-opacity = 1
 #   * `underline`
 #   * `block_hollow`
 # 
-cursor-style = block
+cursor-style = bar
 
 # Sets the default blinking state of the cursor. This is just the default
 # state; running programs may override the cursor style using `DECSCUSR` (`CSI

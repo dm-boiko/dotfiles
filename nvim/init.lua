@@ -4,10 +4,8 @@ vim.g.maplocalleader = ' '
 require("options")
 require("keymap")
 
--- vim.cmd([[silent! autocmd BufRead,BufNewFile *.tf set filetype=hcl]])
+vim.cmd([[silent! autocmd BufRead,BufNewFile *.tf set filetype=hcl]])
 
-
--- When text is yanked, highlight it for a short while
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -31,9 +29,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
- change_detection = {
-  notify = false,
- },
+	change_detection = {
+		notify = false,
+	},
 })
 
 require("lsp-config")

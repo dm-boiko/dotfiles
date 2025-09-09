@@ -38,3 +38,5 @@ export PATH="/opt/homebrew/bin:$HOME/.npm/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export PATH="$PATH:/Users/dima/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+alias claude="/Users/dima/.claude/local/claude"

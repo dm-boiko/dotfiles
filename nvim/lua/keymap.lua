@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 
 vim.keymap.set("i", "jk", "<Esc>", default_opts )
 vim.keymap.set("i", "kj", "<Esc>", default_opts )
+
 -- Keep cursor centered when scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz", default_opts)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", default_opts)
@@ -11,6 +12,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", default_opts)
 --vim.keymap.set("n", "<C-j>", "g,zz")
 
  vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", default_opts)
+vim.keymap.set("v", "J", ":m '<+2<CR>gv=gv", default_opts)
+
 -- paste over currently selected text without yanking it
 vim.keymap.set("v", "p", '"_dp', default_opts)
 vim.keymap.set("v", "P", '"_dP', default_opts)
@@ -56,3 +59,9 @@ vim.keymap.set("n", "<leader>tq", ":tabclose<CR>", default_opts)
 -- Move over every line, even continuous one
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+
+
+
+
+
