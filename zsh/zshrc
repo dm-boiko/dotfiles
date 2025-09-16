@@ -40,4 +40,4 @@ export PATH="$PATH:/Users/dima/.lmstudio/bin"
 
 
 alias claude="/Users/dima/.claude/local/claude"
-eval "$(/Users/dima/.local/bin/mise activate zsh)"
+# eval "$(/Users/dima/.local/bin/mise activate zsh)"

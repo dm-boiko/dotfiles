@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-#font-family = Roboto Mono
-#font-family = SauceCodePro Nerd Font
-=======
-#font-family = Roboto Mono Regular
 font-family = SauceCodePro Nerd Font
->>>>>>> a37c7d5 (updates)
 
 font-family-bold = 
 font-family-italic = 
