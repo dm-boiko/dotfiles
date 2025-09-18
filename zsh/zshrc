@@ -39,5 +39,13 @@ export PATH="$PATH:/Users/dima/.lmstudio/bin"
 # End of LM Studio CLI section
 
 
+if [[ -n $SSH_CONNECTION ]]; then
+  PROMPT='%F{red}%n@%m%f %~ %# '
+else
+  PROMPT='%F{green}%n@%m%f %~ %# '
+fi
+
+
+
 alias claude="/Users/dima/.claude/local/claude"
 # eval "$(/Users/dima/.local/bin/mise activate zsh)"
