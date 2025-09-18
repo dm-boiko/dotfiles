@@ -20,7 +20,7 @@ HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
 HIST_STAMPS="yyyy-mm-dd"
 
 
-ZSH_THEME="dima"
+ZSH_THEME="dima" # set by `omz`
 
 plugins=(git)
 
@@ -37,15 +37,6 @@ export PATH="/opt/homebrew/bin:$HOME/.npm/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/dima/.lmstudio/bin"
 # End of LM Studio CLI section
-
-
-if [[ -n $SSH_CONNECTION ]]; then
-  PROMPT='%F{red}%n@%m%f %~ %# '
-else
-  PROMPT='%F{green}%n@%m%f %~ %# '
-fi
-
-
 
 alias claude="/Users/dima/.claude/local/claude"
 # eval "$(/Users/dima/.local/bin/mise activate zsh)"
