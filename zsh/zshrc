@@ -34,6 +34,8 @@ alias py="python"
 export HOMEBREW_NO_ANALYTICS=true
 export PATH="/opt/homebrew/bin:$HOME/.npm/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 
+export EDITOR=nvim
+
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/dima/.lmstudio/bin"
 # End of LM Studio CLI section
