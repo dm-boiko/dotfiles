@@ -7,6 +7,55 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "disable_ai": false,
+  "use_system_window_tabs": false,
+  "preview_tabs": {
+    "enabled": true
+  },
+  "tabs": {
+    "close_position": "left",
+    "file_icons": true
+  },
+  "title_bar": {
+    "show_menus": true,
+    "show_user_picture": true,
+    "show_sign_in": true,
+    "show_onboarding_banner": false,
+    "show_branch_name": true,
+    "show_branch_icon": false
+  },
+  "debugger": {
+    "button": true
+  },
+  "search": {
+    "button": false
+  },
+  "diagnostics": {
+    "button": true
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_language_button": false
+  },
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "enabled": true
+  },
+  "scrollbar": {
+    "axes": {
+      "vertical": true
+    },
+    "selected_symbol": false,
+    "selected_text": false,
+    "search_results": false,
+    "cursors": true,
+    "git_diff": false
+  },
+  "auto_signature_help": true,
+  "excerpt_context_lines": 4,
+  "expand_excerpt_lines": 10,
+  "use_system_prompts": false,
+  "use_system_path_prompts": false,
   "show_edit_predictions": false,
   "edit_predictions": {
     "mode": "subtle",
@@ -21,14 +70,20 @@
     "dock": "bottom"
   },
   "agent": {
+    "message_editor_min_lines": 8,
+    "notify_when_agent_waiting": "all_screens",
+    "enable_feedback": false,
+    "default_width": 640.0,
+    "button": true,
     "play_sound_when_agent_done": true,
     "dock": "right",
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
+      "provider": "ollama",
+      "model": "gpt-oss:latest"
     }
   },
   "outline_panel": {
+    "file_icons": true,
     "dock": "right",
     "button": true
   },
@@ -36,7 +91,7 @@
     "dock": "right"
   },
   "collaboration_panel": {
-    "button": false,
+    "button": true,
     "dock": "right"
   },
   "notification_panel": {
@@ -48,10 +103,19 @@
   },
 
   "project_panel": {
+    "hide_root": true,
+    "indent_guides": {
+      "show": "always"
+    },
+    "indent_size": 14.0,
+    "git_status": true,
+    "folder_icons": false,
+    "file_icons": true,
+    "entry_spacing": "standard",
     "dock": "left"
   },
   "tab_bar": {
-    "show": false,
+    "show": true,
     "show_nav_history_buttons": false
   },
 
@@ -65,7 +129,7 @@
       "enabled": false
     }
   },
-  "theme": "Ayu Mirage",
+  "theme": "One Dark",
   "vim_mode": true,
   "telemetry": {
     "diagnostics": false,
@@ -80,5 +144,5 @@
     "calt": false
   },
   "cursor_blink": false,
-  "relative_line_numbers": true
+  "relative_line_numbers": "enabled"
 }
