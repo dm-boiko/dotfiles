@@ -1,4 +1,5 @@
-@import "../omarchy/current/theme/waybar.css";
+@define-color background #1e1e2e;
+@define-color foreground #cdd6f4;
 
 * {
   background-color: @background;
@@ -35,10 +36,7 @@
 #battery,
 #network,
 #bluetooth,
-#pulseaudio,
-#custom-omarchy,
-#custom-screenrecording-indicator,
-#custom-update {
+#pulseaudio {
   min-width: 12px;
   margin: 0 7.5px;
 }
@@ -51,24 +49,10 @@ tooltip {
   padding: 2px;
 }
 
-#custom-update {
-  font-size: 10px;
-}
-
 #clock {
   margin-left: 8.75px;
 }
 
 .hidden {
   opacity: 0;
-}
-
-#custom-screenrecording-indicator {
-  min-width: 12px;
-  margin-left: 8.75px;
-  font-size: 10px;
-}
-
-#custom-screenrecording-indicator.active {
-  color: #a55555;
 }
