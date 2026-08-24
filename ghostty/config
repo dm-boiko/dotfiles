@@ -38,30 +38,34 @@ async-backend = epoll
 ########## Tmux-style bindings (prefix: ctrl+a)
 #############################
 # Mirrors ~/.tmux.conf where possible.
+# Uses cross-platform W3C physical key codes so keyboard layouts and input
+# methods cannot change how the bindings match (supported on Linux and macOS).
 #
-# NOTE: consuming ctrl+a means the readline "beginning of line" key is
-# captured while a sequence is pending. Press ctrl+a twice to send a real
-# ctrl+a to the shell (same as tmux's send-prefix).
+# Ctrl+A activates a one-shot table: the next valid command runs and exits it.
+# Unknown commands are consumed by catch_all and also exit the table. Press
+# ctrl+a twice to send a real ctrl+a to the shell (tmux's send-prefix).
+
+keybind = ctrl+KeyA=activate_key_table_once:tmux
 
 # Prefix C-a -> send-prefix (literal ctrl+a to the running program)
-keybind = ctrl+a>ctrl+a=text:\x01
+keybind = tmux/ctrl+KeyA=text:\x01
 
 # Splits: prefix + = (vertical) / - (horizontal), opens in cwd via shell integration
-keybind = ctrl+a>==new_split:right
-keybind = ctrl+a>-=new_split:down
+keybind = tmux/Equal=new_split:right
+keybind = tmux/Minus=new_split:down
 
 # Pane navigation: prefix + hjkl ...
-keybind = ctrl+a>h=goto_split:left
-keybind = ctrl+a>j=goto_split:down
-keybind = ctrl+a>k=goto_split:up
-keybind = ctrl+a>l=goto_split:right
+keybind = tmux/KeyH=goto_split:left
+keybind = tmux/KeyJ=goto_split:down
+keybind = tmux/KeyK=goto_split:up
+keybind = tmux/KeyL=goto_split:right
 
 # ... and raw ctrl+hjkl (no prefix), like tmux's smart vim-aware switching.
 # (The vim-awareness part lives in nvim; see nvim/lua/plugins/tmux.lua)
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:down
-keybind = ctrl+k=goto_split:up
-keybind = ctrl+l=goto_split:right
+keybind = ctrl+KeyH=goto_split:left
+keybind = ctrl+KeyJ=goto_split:down
+keybind = ctrl+KeyK=goto_split:up
+keybind = ctrl+KeyL=goto_split:right
 
 # Windows <-> tabs: shift+arrows without prefix, like tmux -n S-Left/S-Right
 # (unbind the default shift+arrow selection-adjust first)
@@ -73,40 +77,43 @@ keybind = shift+left=previous_tab
 keybind = shift+right=next_tab
 
 # New window/tab: prefix + c (tmux new-window)
-keybind = ctrl+a>c=new_tab
+keybind = tmux/KeyC=new_tab
 
 # Goto window 1-9: prefix + number
-keybind = ctrl+a>1=goto_tab:1
-keybind = ctrl+a>2=goto_tab:2
-keybind = ctrl+a>3=goto_tab:3
-keybind = ctrl+a>4=goto_tab:4
-keybind = ctrl+a>5=goto_tab:5
-keybind = ctrl+a>6=goto_tab:6
-keybind = ctrl+a>7=goto_tab:7
-keybind = ctrl+a>8=goto_tab:8
-keybind = ctrl+a>9=goto_tab:9
+keybind = tmux/Digit1=goto_tab:1
+keybind = tmux/Digit2=goto_tab:2
+keybind = tmux/Digit3=goto_tab:3
+keybind = tmux/Digit4=goto_tab:4
+keybind = tmux/Digit5=goto_tab:5
+keybind = tmux/Digit6=goto_tab:6
+keybind = tmux/Digit7=goto_tab:7
+keybind = tmux/Digit8=goto_tab:8
+keybind = tmux/Digit9=goto_tab:9
 
 # Zoom pane: prefix + z, close pane: prefix + x
-keybind = ctrl+a>z=toggle_split_zoom
-keybind = ctrl+a>x=close_surface
+keybind = tmux/KeyZ=toggle_split_zoom
+keybind = tmux/KeyX=close_surface
 
 # Resize: prefix + D = 8 lines down (mirrors tmux bind D); fine-grained
 # resizing stays on super+ctrl+arrows (10px) and super+ctrl+alt+shift (100px)
-keybind = ctrl+a>D=resize_split:down,8
+keybind = tmux/KeyD=resize_split:down,8
 
 # Reload config: prefix + r
-keybind = ctrl+a>r=reload_config
+keybind = tmux/KeyR=reload_config
 
 # Edit config in $EDITOR: prefix + e (opens ghostty config)
-keybind = ctrl+a>e=open_config
+keybind = tmux/KeyE=open_config
 
 # Clear screen + history: prefix + y
-keybind = ctrl+a>y=clear_screen
+keybind = tmux/KeyY=clear_screen
 
 # Search (copy-mode ?): prefix + /
-keybind = ctrl+a>slash=start_search
+keybind = tmux/Slash=start_search
 
 # Session switching has no true ghostty equivalent. Best-effort:
 # prefix + s -> tab overview (choose-tree-ish), prefix + p -> command palette
-keybind = ctrl+a>s=toggle_tab_overview
-keybind = ctrl+a>p=toggle_command_palette
+keybind = tmux/KeyS=toggle_tab_overview
+keybind = tmux/KeyP=toggle_command_palette
+
+# Cancel the one-shot table after any unknown command.
+keybind = tmux/catch_all=deactivate_key_table
