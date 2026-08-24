@@ -1,5 +1,4 @@
 export ZSH="$HOME/.oh-my-zsh"
-export PROMPT_COMMAND='echo -ne "\033]0;$PWD\007"'
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -25,6 +24,14 @@ ZSH_THEME="dima" # set by `omz`
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# Tab title = current folder name (basename). While a command runs, Ghostty's
+# shell-integration "title" feature temporarily renames it to the command
+# (like tmux automatic-rename), then this hook restores it at the next prompt.
+function set_tab_title() {
+  print -Pn "\e]0;${PWD##*/}\a"
+}
+add-zsh-hook precmd set_tab_title
 
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
