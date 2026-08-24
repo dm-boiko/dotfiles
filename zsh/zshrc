@@ -40,5 +40,12 @@ export EDITOR=nvim
 export PATH="$PATH:/Users/dima/.lmstudio/bin"
 # End of LM Studio CLI section
 
-alias claude="/Users/dima/.claude/local/claude"
 # eval "$(/Users/dima/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
+
+# >>> open-knowledge cli >>>
+# ! Contents within this block are managed by OpenKnowledge. Do not edit.
+# ! Delete this whole block to opt out — OpenKnowledge will not re-add it.
+[ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
+# <<< open-knowledge cli <<<
+alias cx='codex --approve-for-me'

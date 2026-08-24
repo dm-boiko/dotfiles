@@ -7,49 +7,65 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
+    "gemini": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+  "git_panel": {
+    "dock": "right",
+  },
+  "agent_buffer_font_size": 16.0,
+  "agent_ui_font_size": 14.0,
   "disable_ai": false,
   "use_system_window_tabs": false,
   "preview_tabs": {
-    "enabled": true
+    "enabled": true,
   },
   "tabs": {
     "close_position": "left",
-    "file_icons": true
+    "file_icons": true,
   },
   "title_bar": {
     "show_menus": true,
     "show_user_picture": true,
-    "show_sign_in": true,
+    "show_sign_in": false,
     "show_onboarding_banner": false,
-    "show_branch_name": true,
-    "show_branch_icon": false
+    "show_branch_name": false,
+    "show_branch_icon": true,
   },
   "debugger": {
-    "button": true
+    "button": true,
   },
   "search": {
-    "button": false
+    "button": false,
   },
   "diagnostics": {
-    "button": true
+    "button": false,
   },
   "status_bar": {
     "cursor_position_button": false,
-    "active_language_button": false
+    "active_language_button": false,
   },
   "indent_guides": {
     "background_coloring": "disabled",
-    "enabled": true
+    "enabled": true,
   },
   "scrollbar": {
     "axes": {
-      "vertical": true
+      "vertical": true,
     },
     "selected_symbol": false,
     "selected_text": false,
     "search_results": false,
     "cursors": true,
-    "git_diff": false
+    "git_diff": false,
   },
   "auto_signature_help": true,
   "excerpt_context_lines": 4,
@@ -62,12 +78,12 @@
     "copilot": {
       "proxy": null,
       "proxy_no_verify": null,
-      "enterprise_uri": null
+      "enterprise_uri": null,
     },
-    "enabled_in_text_threads": false
+    "enabled_in_text_threads": false,
   },
   "terminal": {
-    "dock": "bottom"
+    "dock": "bottom",
   },
   "agent": {
     "message_editor_min_lines": 8,
@@ -76,73 +92,79 @@
     "default_width": 640.0,
     "button": true,
     "play_sound_when_agent_done": true,
-    "dock": "right",
+    "dock": "left",
     "default_model": {
       "provider": "ollama",
-      "model": "gpt-oss:latest"
-    }
+      "model": "gpt-oss:latest",
+    },
   },
   "outline_panel": {
     "file_icons": true,
     "dock": "right",
-    "button": true
-  },
-  "chat_panel": {
-    "dock": "right"
+    "button": true,
   },
   "collaboration_panel": {
     "button": true,
-    "dock": "right"
+    "dock": "right",
   },
   "notification_panel": {
-    "button": false
+    "button": false,
   },
   "features": {
     // "copilot": false,
     // "inline_completion_provider": "none"
   },
 
+  // "/Users/dima/.local/share/mise/installs/ruby/3.4.5/bin"
+  "languages": {
+    "Go": {
+      "show_edit_predictions": true,
+    },
+    "Ruby": {
+      "useBundler": true,
+    },
+  },
   "project_panel": {
     "hide_root": true,
     "indent_guides": {
-      "show": "always"
+      "show": "always",
     },
     "indent_size": 14.0,
     "git_status": true,
     "folder_icons": false,
     "file_icons": true,
     "entry_spacing": "standard",
-    "dock": "left"
+    "dock": "right",
   },
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
 
   "toolbar": {
     "quick_actions": false,
-    "breadcrumbs": false
+    "breadcrumbs": false,
   },
 
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
-  "theme": "One Dark",
+  "theme": "Ayu Mirage",
   "vim_mode": true,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
-  "ui_font_size": 17,
+  "ui_font_size": 16.0,
   "buffer_font_size": 18.0,
   "buffer_font_family": "SauceCodePro Nerd Font Mono",
   "ui_font_family": "SauceCodePro Nerd Font",
   "buffer_font_features": {
     // Disable ligatures:
-    "calt": false
+    "calt": false,
   },
   "cursor_blink": false,
-  "relative_line_numbers": "enabled"
+  "relative_line_numbers": "enabled",
 }
