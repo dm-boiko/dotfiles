@@ -27,4 +27,5 @@
   // Example: replace the default About action by reusing the same id. Existing
   // fields are kept unless overridden.
   // "about": {"icon":"","label":"About","action":"omarchy-launch-or-focus-tui \"zsh -c 'fastfetch; read -k 1'\""},
+  "install.webapp": {"icon":"","label":"Web App","action":"omarchy-launch-floating-terminal-with-presentation $HOME/.local/bin/omarchy-webapp-install-chromium"}
 }

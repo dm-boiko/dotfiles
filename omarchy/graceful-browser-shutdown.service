@@ -1,14 +1,15 @@
 [Unit]
 Description=Gracefully close web browsers before shutdown
-After=user@1000.service
+Documentation=man:systemd.special(7)
+PartOf=graphical-session.target
+After=graphical-session.target app-graphical.slice
 
 [Service]
 Type=oneshot
-User=d
 RemainAfterExit=yes
 ExecStart=/usr/bin/true
 ExecStop=/home/d/.local/bin/graceful-browser-shutdown
 TimeoutStopSec=18s
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical-session.target

@@ -7,7 +7,7 @@
           "id": "omarchy.indicators"
         },
         {
-          "format": "dddd HH:mm",
+          "format": "HH:mm",
           "formatAlt": "d MMMM 'W'ww yyyy",
           "id": "omarchy.clock",
           "verticalFormat": "HH\n—\nmm"
@@ -16,16 +16,10 @@
           "id": "omarchy.keyboard-layout"
         },
         {
-          "id": "omarchy.weather"
-        },
-        {
           "id": "omarchy.system-update"
         }
       ],
       "left": [
-        {
-          "id": "omarchy.menu"
-        },
         {
           "id": "omarchy.workspaces"
         }
@@ -59,7 +53,7 @@
   },
   "idle": {
     "lock": 300,
-    "screensaver": 150
+    "screensaver": 86400
   },
   "plugins": [],
   "version": 1

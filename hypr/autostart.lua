@@ -10,16 +10,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd(o.launch("chatgpt"), { workspace = "3 silent" })
 end)
 
--- Keep every subsequently opened terminal/browser/app on its assigned
--- workspace too. Direct class matching is required because workspace is an
--- initial-only rule, while Omarchy's category tags are applied dynamically.
-o.window(
-  "^(Alacritty|kitty|com\\.mitchellh\\.ghostty|foot|org\\.codeberg\\.dnkl\\.foot|wezterm)$",
-  { workspace = "1 silent" }
-)
-o.window(
-  "^((google-)?[cC]hrom(e|ium)|[bB]rave-browser|[mM]icrosoft-edge|Vivaldi-stable|helium|[fF]irefox|zen|librewolf).*$",
-  { workspace = "2 silent" }
-)
-o.window("^(obsidian|md\\.Obsidian)$", { workspace = "3 silent" })
+-- Keep only the main browser (currently Brave) on workspace 2.
+-- Other browsers and Chromium web apps remain on the workspace where they launch.
+-- Terminals are intentionally unrestricted after the initial workspace 1 launch.
+o.window("^(brave-browser|brave-origin)$", { workspace = "2 silent" })
+o.window("^(obsidian|md\\.Obsidian|md\\.obsidian\\.Obsidian)$", { workspace = "3 silent" })
 o.window("^(ChatGPT|chatgpt|com\\.openai\\.(chat|codex))$", { workspace = "3 silent" })
