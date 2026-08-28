@@ -1,3 +1,7 @@
 zed/prompts/
 zed/conversations/
 zed/themes/
+
+# Generated configuration backups
+*.bak.*
+*.bak-*
