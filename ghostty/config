@@ -20,6 +20,9 @@ cursor-click-to-move = true
 # Shell integration
 shell-integration-features = no-cursor,no-title,ssh-env
 
+# Bell: no focus request or title indicator
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+
 # Keyboard bindings
 keybind = shift+insert=paste_from_clipboard
 keybind = control+insert=copy_to_clipboard
