@@ -28,6 +28,9 @@ keybind = shift+insert=paste_from_clipboard
 keybind = control+insert=copy_to_clipboard
 keybind = shift+enter=csi:13;2u
 keybind = alt+shift+enter=csi:13;4u
+# Super+W sends ctrl+shift+w in terminals: close the active pane, or its tab if unsplit.
+keybind = ctrl+shift+w=unbind
+keybind = ctrl+shift+w=close_surface
 keybind = super+control+shift+alt+arrow_down=resize_split:down,100
 keybind = super+control+shift+alt+arrow_up=resize_split:up,100
 keybind = super+control+shift+alt+arrow_left=resize_split:left,100

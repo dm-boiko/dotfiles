@@ -250,3 +250,6 @@ alias gwtrm='git worktree remove'
 
 # fx rejects skills reached via symlinks unless the target dir is a trusted authority
 export FX_SKILL_SYMLINK_AUTHORITIES=/usr/share/omarchy/default/agents/skills
+
+# Pi coding agent configuration directory
+export PI_CODING_AGENT_DIR="$HOME/.config/pi"

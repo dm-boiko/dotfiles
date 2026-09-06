@@ -16,11 +16,23 @@
 o.bind("SUPER + B", "Browser", { omarchy = "browser" })
 -- o.bind("SUPER + Z", "Browser", { omarchy = "browser" })
 
+-- Unbind default SUPER + SHIFT + E (was: Email)
+hl.unbind("SUPER + SHIFT + E")
+
+-- Unbind default transparency toggle
+hl.unbind("SUPER + BACKSPACE")
+
+-- Replace grouped-window navigation with workspace navigation
+hl.unbind("SUPER + CTRL + LEFT")
+hl.unbind("SUPER + CTRL + RIGHT")
+o.bind("SUPER + CTRL + LEFT", "Previous workspace", hl.dsp.focus({ workspace = "e-1" }))
+o.bind("SUPER + CTRL + RIGHT", "Next workspace", hl.dsp.focus({ workspace = "e+1" }))
+
 -- Unbind default SUPER + F (was: Full screen)
 hl.unbind("SUPER + F")
 o.bind("SUPER + F", "File manager", { launch = "nautilus --new-window" })
 
--- Close window with SUPER + Q (SUPER + W is now Universal close tab)
+-- Close window with SUPER + Q (SUPER + W closes the active tab/pane)
 o.bind("SUPER + Q", "Close active window", hl.dsp.window.close())
 
 -- Universal tab shortcuts (Browser vs Terminal)
@@ -66,7 +78,7 @@ o.bind("SUPER + SHIFT + T", "Toggle window floating/tiling", hl.dsp.window.float
 
 -- Unbind default SUPER + W (was: Close window)
 hl.unbind("SUPER + W")
-o.bind("SUPER + W", "Universal close tab", universal_tab_shortcut("CTRL", "W", "CTRL SHIFT", "W"))
+o.bind("SUPER + W", "Close tab/pane", universal_tab_shortcut("CTRL", "W", "CTRL SHIFT", "W"))
 
 -- Fullscreen toggles
 o.bind("SHIFT + F11", "Force full screen", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
