@@ -2,6 +2,14 @@ zed/prompts/
 zed/conversations/
 zed/themes/
 
+# Pi coding agent secrets and runtime data
+pi/auth.json
+pi/models-store.json
+pi/sessions/
+pi/trust.json
+pi/git/
+pi/npm/
+
 # Generated configuration backups
 *.bak.*
 *.bak-*

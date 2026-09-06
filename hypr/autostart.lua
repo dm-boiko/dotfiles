@@ -10,9 +10,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd(o.launch("chatgpt"), { workspace = "3 silent" })
 end)
 
--- Keep only the main browser (currently Brave) on workspace 2.
+-- Keep only the main browser (currently Zen) on workspace 2.
 -- Other browsers and Chromium web apps remain on the workspace where they launch.
 -- Terminals are intentionally unrestricted after the initial workspace 1 launch.
-o.window("^(brave-browser|brave-origin)$", { workspace = "2 silent" })
+o.window("^zen$", { workspace = "2 silent" })
 o.window("^(obsidian|md\\.Obsidian|md\\.obsidian\\.Obsidian)$", { workspace = "3 silent" })
 o.window("^(ChatGPT|chatgpt|com\\.openai\\.(chat|codex))$", { workspace = "3 silent" })

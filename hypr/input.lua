@@ -38,6 +38,11 @@ hl.config({
       -- drag_3fg = 1,
     },
   },
+
+  cursor = {
+    no_warps = false,
+    warp_on_change_workspace = 0,
+  },
 })
 
 -- App-specific touchpad scroll speeds.
