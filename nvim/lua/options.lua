@@ -36,6 +36,8 @@ local options = {
 	foldlevel = 99,
 	foldenable = true,
 	foldcolumn = "0",
+	foldmethod = "expr",
+	foldexpr = "v:lua.vim.treesitter.foldexpr()",
 	fillchars = {
 		foldopen = "",
 		foldclose = "",
@@ -54,3 +56,8 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+-- Native statusline (replaces lualine + git-blame)
+-- Shows relative filename, modified flag, filetype, position
+vim.o.statusline = " %f %m%r %= %y %l:%c %p%% "
+vim.o.laststatus = 3
