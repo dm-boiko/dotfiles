@@ -1,7 +1,7 @@
 return {
 	{
 		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		dependencies = { 'nvim-tree/nvim-web-devicons', 'f-person/git-blame.nvim' },
 
 		config = function()
 			vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text

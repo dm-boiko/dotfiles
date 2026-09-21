@@ -1,4 +1,5 @@
-local lsp_zero = require('lsp-zero')
+local ok_lsp_zero, lsp_zero = pcall(require, 'lsp-zero')
+if not ok_lsp_zero then return end
 
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
@@ -20,32 +21,37 @@ lsp_zero.on_attach(function(client, bufnr)
 
 end)
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    lsp_zero.default_setup,
-  },
-})
+pcall(function() require('mason').setup({}) end)
+pcall(function()
+  require('mason-lspconfig').setup({
+    handlers = {
+      lsp_zero.default_setup,
+    },
+  })
+end)
 
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+local ok_cmp, cmp = pcall(require, 'cmp')
+if not ok_cmp then return end
+local ok_cmp_action, cmp_action_mod = pcall(function() return require('lsp-zero').cmp_action() end)
+local cmp_action = ok_cmp_action and cmp_action_mod or nil
 
 cmp.setup({
 
-  mapping = cmp.mapping.preset.insert({
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-    -- Ctrl+Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
-
-    -- Navigate between snippet placeholder
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-
-    -- Scroll up and down in the completion documentation
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  })
+  mapping = cmp.mapping.preset.insert((function()
+    local m = {
+      -- `Enter` key to confirm completion
+      ['<CR>'] = cmp.mapping.confirm({select = false}),
+      -- Ctrl+Space to trigger completion menu
+      ['<C-Space>'] = cmp.mapping.complete(),
+      -- Scroll up and down in the completion documentation
+      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }
+    if cmp_action then
+      m['<C-f>'] = cmp_action.luasnip_jump_forward()
+      m['<C-b>'] = cmp_action.luasnip_jump_backward()
+    end
+    return m
+  end)()),
 })
 -- require "lsp_signature".setup()
