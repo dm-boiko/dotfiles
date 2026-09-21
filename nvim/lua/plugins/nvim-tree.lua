@@ -2,18 +2,12 @@ return {
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
+        lazy = true,
+        keys = { { ",", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
         cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-        init = function()
-            vim.keymap.set("n", ",", ":NvimTreeToggle<CR>", { silent = true })
-        end,
+        dependencies = { "nvim-tree/nvim-web-devicons" },
 
         config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
 
             local HEIGHT_RATIO = 0.8
             local WIDTH_RATIO = 0.5
