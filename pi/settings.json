@@ -1,19 +1,15 @@
 {
-  "theme": "omarchy-system",
-  "lastChangelogVersion": "0.85.0",
+  "lastChangelogVersion": "1.0.2",
   "defaultProvider": "openrouter",
-  "defaultModel": "google/gemini-3.7-flash",
+  "defaultModel": "z-ai/glm-5.3-flash",
   "defaultThinkingLevel": "high",
-  "editorPaddingX": 2,
-  "outputPad": 1,
+  "enableInstallTelemetry": false,
+  "theme": "dark",
+  "showHardwareCursor": true,
+  "editorPaddingX": 1,
   "terminal": {
     "showTerminalProgress": true
   },
-  "markdown": {
-    "mermaid": "final"
-  },
-  "tuiMode": "regular",
-  "showHardwareCursor": true,
-  "autocompleteMaxVisible": 10,
+  "hideThinkingBlock": true,
   "collapseChangelog": true
 }
