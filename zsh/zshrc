@@ -56,3 +56,9 @@ eval "$(~/.local/bin/mise activate zsh)"
 [ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
 # <<< open-knowledge cli <<<
 alias cx='codex --approve-for-me'
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
