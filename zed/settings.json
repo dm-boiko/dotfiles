@@ -8,6 +8,9 @@
 // from the command palette or from `Zed` application menu.
 {
   "agent_servers": {
+    "pi-acp": {
+      "type": "registry"
+    },
     "claude-acp": {
       "type": "registry"
     },
