@@ -6,9 +6,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- Pre-create FileExplorer augroup to avoid E216 from nvim-tree's manage_netrw (silent! still logs in -V)
 pcall(vim.api.nvim_create_augroup, 'FileExplorer', { clear = true })
--- Suppress vim-tmux-navigator netrw conflict warning
-vim.g.tmux_navigator_disable_netrw_workaround = 1
-
 require("options")
 require("keymap")
 

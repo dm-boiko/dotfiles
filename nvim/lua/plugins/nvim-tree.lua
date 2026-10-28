@@ -5,7 +5,6 @@ return {
         lazy = true,
         keys = { { ",", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
         cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-        dependencies = { "nvim-tree/nvim-web-devicons" },
 
         config = function()
 

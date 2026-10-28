@@ -7,20 +7,6 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "agent_servers": {
-    "pi-acp": {
-      "type": "registry"
-    },
-    "claude-acp": {
-      "type": "registry"
-    },
-    "gemini": {
-      "type": "registry"
-    },
-    "codex-acp": {
-      "type": "registry"
-    }
-  },
   "git_panel": {
     "dock": "right",
   },
