@@ -2,6 +2,7 @@
 font-family = "SauceCodePro Nerd Font"
 font-style = Regular
 font-size = 12
+macos-titlebar-style = "native"
 
 # Appearance
 theme = "Kanagawa Wave"
